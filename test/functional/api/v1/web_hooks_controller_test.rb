@@ -57,8 +57,8 @@ class Api::V1::WebHooksControllerTest < ActionController::TestCase
 
     context "with the gemcutter gem" do
       setup do
-        @gemcutter = create(:rubygem, name: "gemcutter")
-        create(:version, rubygem: @gemcutter)
+        @rubygem = create(:rubygem, name: "gemcutter")
+        create(:version, rubygem: @rubygem)
       end
 
       context "On POST to fire for all gems" do
@@ -69,7 +69,7 @@ class Api::V1::WebHooksControllerTest < ActionController::TestCase
         end
         should respond_with :success
         should "say successfully deployed" do
-          content = "Successfully deployed webhook for #{@gemcutter.name} to #{@url}"
+          content = "Successfully deployed webhook for #{@rubygem.name} to #{@url}"
           assert page.has_content?(content)
           assert WebHook.count.zero?
         end
@@ -83,7 +83,7 @@ class Api::V1::WebHooksControllerTest < ActionController::TestCase
         end
         should respond_with :bad_request
         should "say successfully deployed" do
-          content = "There was a problem deploying webhook for #{@gemcutter.name} to #{@url}"
+          content = "There was a problem deploying webhook for #{@rubygem.name} to #{@url}"
           assert page.has_content?(content)
           assert WebHook.count.zero?
         end

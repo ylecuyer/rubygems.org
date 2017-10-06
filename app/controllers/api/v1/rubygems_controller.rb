@@ -28,14 +28,15 @@ class Api::V1::RubygemsController < Api::BaseController
   end
 
   def create
-    gemcutter = Pusher.new(
+    gem = Pusher.new(
       current_user,
       request.body,
       request.protocol.delete("://"),
       request.host_with_port
     )
-    gemcutter.process
-    render plain: gemcutter.message, status: gemcutter.code
+
+    gem.process
+    render plain: gem.message, status: gem.code
   rescue => e
     Honeybadger.notify(e)
     render plain: "Server error. Please try again.", status: 500

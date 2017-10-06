@@ -1,6 +1,6 @@
-require "tasks/helpers/gemcutter_tasks_helper"
+require "tasks/helpers/rubygems_tasks_helper"
 
-namespace :gemcutter do
+namespace :rubygems do
   namespace :index do
     desc "Update the index"
     task update: :environment do
@@ -12,7 +12,7 @@ namespace :gemcutter do
   end
 
   namespace :import do
-    desc 'Bring the gems through the gemcutter process'
+    desc 'Bring the gems through the import process'
     task process: :environment do
       gems = Dir[File.join(ARGV[1] || "#{Gem.path.first}/cache", "*.gem")].sort.reverse
       puts "Processing #{gems.size} gems..."

@@ -122,18 +122,18 @@ can try running:
 #### Importing gems into the database
 
 * Import gems into the database with Rake task.
-    `bundle exec rake gemcutter:import:process vendor/cache`
+    `bundle exec rake rubygems:import:process vendor/cache`
     * _To import a small set of gems you can point the import process to any
         gems cache directory, like a very small `rvm` gemset for instance, or
 	specifying `GEM_PATH/cache` instead of `vendor/cache`._
-* If you need the index available then run `bundle exec rake gemcutter:index:update`.
+* If you need the index available then run `bundle exec rake rubygems:index:update`.
     This primes the filesystem gem index for local use.
 
 #### Getting the test data
 
 * A good way to get some test data is to import from a local gem directory.
 `gem env` will tell you where rubygems stores your gems. Run
-`bundle exec rake gemcutter:import:process #{INSTALLATION_DIRECTORY}/cache`
+`bundle exec rake rubygems:import:process #{INSTALLATION_DIRECTORY}/cache`
 
 * If you see "Processing 0 gems" you’ve probably specified the wrong
 directory. The proper directory will be full of .gem files.
@@ -141,7 +141,7 @@ directory. The proper directory will be full of .gem files.
 #### Getting the data dumps
 * You can use rubygems.org data [dumps](https://rubygems.org/pages/data) to test
 application in development environment especially for performance related issues.
-* To load the main database dump into Postgres, use `psql` - e.g. `$ psql gemcutter_development < PostgreSQL.sql`.
+* To load the main database dump into Postgres, use `psql` - e.g. `$ psql rubygems_development < PostgreSQL.sql`.
 
 #### Pushing gems
 

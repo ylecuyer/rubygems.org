@@ -1,4 +1,4 @@
-module GemcutterTaskshelper
+module RubygemsTaskshelper
   module_function
 
   def recalculate_sha256(version_full_name)
