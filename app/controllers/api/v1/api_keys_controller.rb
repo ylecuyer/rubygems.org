@@ -18,6 +18,8 @@ class Api::V1::ApiKeysController < Api::BaseController
       else
         false
       end
+    rescue BCrypt::Errors::InvalidHash
+      false
     end
   end
 
